@@ -1,0 +1,17 @@
+#!/usr/bin/env php
+<?php
+declare(strict_types=1);
+
+use App\Services\Boot;
+
+require __DIR__ . '/app/predefine.php';
+require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/config/.config.php';
+
+Boot::setTime();
+Boot::bootDb();
+
+use App\Command\XCat;
+
+$cat = new XCat($argv);
+$cat->boot();
